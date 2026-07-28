@@ -7,6 +7,7 @@
 - [app 总览](./app/README.md)
 - [app 架构](./app/architecture.md)
 - [app runtime](./app/runtime.md)
+- [app 云端遥测客户端](./app/cloud_telemetry.md)
 - [app plugin_system](./app/plugin_system.md)
 - [app 命令手册](./app/command_reference.md)
 

@@ -6,6 +6,7 @@
 
 - [architecture](./architecture.md): app 层架构边界、目录职责和启动路径。
 - [runtime](./runtime.md): Bot 生命周期、初始化阶段、关闭流程与故障排查。
+- [cloud_telemetry](./cloud_telemetry.md): 云端遥测客户端的公开入口、启用前提、运行时生命周期与状态摘要。
 - [plugin_system](./plugin_system.md): 插件作者可用入口、API 分类与扩展约束。
 - [command_reference](./command_reference.md): 运行时交互命令说明与使用场景。
 
@@ -13,6 +14,7 @@
 
 - 启动入口：main.py
 - 运行时主类：src/app/runtime/bot.py
+- 云端遥测装配入口：src/app/cloud_telemetry/__init__.py
 - Runtime 导出：src/app/runtime/__init__.py
 - 插件系统总入口：src/app/plugin_system/__init__.py
 - 插件系统 API 聚合：src/app/plugin_system/api/__init__.py
