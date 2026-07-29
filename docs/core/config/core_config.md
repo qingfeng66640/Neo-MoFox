@@ -32,6 +32,9 @@ CoreConfig 定义应用运行期核心配置，包括 bot 生命周期参数、�
 - plugin_deps
 职责：插件 Python 依赖自动安装行为。
 
+- cloud_telemetry
+职责：云端遥测客户端的启用开关、身份状态目录、内存待发送窗口上限及发送时间参数。客户端仍需本地同意状态为 `granted` 才会实际发送。
+
 ## 全局实例管理
 
 - _global_config: CoreConfig | None

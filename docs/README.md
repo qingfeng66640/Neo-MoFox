@@ -32,6 +32,7 @@
 - [scheduler](./scheduler/README.md)
 - [storage](./storage/README.md)
 - [vector_db](./vector_db/README.md)
+- [telemetry](./telemetry/README.md)
 
 ## 其他文档
 

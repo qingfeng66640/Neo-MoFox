@@ -8,6 +8,7 @@
 - [runtime](./runtime.md): Bot 生命周期、初始化阶段、关闭流程与故障排查。
 - [plugin_system](./plugin_system.md): 插件作者可用入口、API 分类与扩展约束。
 - [command_reference](./command_reference.md): 运行时交互命令说明与使用场景。
+- [cloud_telemetry](./cloud_telemetry.md): 云端遥测客户端的运行条件、生命周期与数据边界。
 
 ## 代码映射
 
