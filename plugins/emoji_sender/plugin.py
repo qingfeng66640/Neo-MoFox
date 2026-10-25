@@ -17,7 +17,11 @@ from src.core.components import BasePlugin, register_plugin
 from src.kernel.concurrency import get_task_manager
 from src.kernel.logger import get_logger
 
-from .action import SendEmojiMemeAction, SendEmojiMemeByIdAction
+from .action import (
+    DeleteEmojiMemeByIdAction,
+    SendEmojiMemeAction,
+    SendEmojiMemeByIdAction,
+)
 from .config import EmojiSenderConfig
 from .service import EmojiSenderService
 from .tool import SearchEmojiMemesTool
@@ -108,11 +112,13 @@ class EmojiSenderPlugin(BasePlugin):
     dependent_components: list[str] = []
 
     def __init__(self, config: EmojiSenderConfig | None = None) -> None:
-        """初始化插件的调度状态与运行期拒绝哈希集合。"""
+        """初始化插件的调度状态、拒绝哈希集合与删除哈希集合。"""
         super().__init__(config)
         self._schedule_ids: list[str] = []
         self._register_task_id: str | None = None
         self._rejected_hashes: set[str] = set()
+        # 用户显式删除的表情包哈希，与 VLM 拒收分开存放
+        self._deleted_hashes: set[str] = set()
 
     def get_components(self) -> list[type]:
         """返回本插件提供的组件类（按 interaction_mode 分模式注册）。"""
@@ -120,7 +126,12 @@ class EmojiSenderPlugin(BasePlugin):
         if isinstance(config, EmojiSenderConfig) and not config.plugin.enabled:
             return []
         if _get_interaction_mode(self) == MODE_PICKER:
-            return [EmojiSenderService, SearchEmojiMemesTool, SendEmojiMemeByIdAction]
+            return [
+                EmojiSenderService,
+                SearchEmojiMemesTool,
+                SendEmojiMemeByIdAction,
+                DeleteEmojiMemeByIdAction,
+            ]
         return [EmojiSenderService, SendEmojiMemeAction]
 
     async def on_plugin_loaded(self) -> None:
